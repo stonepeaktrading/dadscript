@@ -160,13 +160,78 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }
 @keyframes up { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.modal-content {
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+}
+.modal-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.modal-content p {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.modal-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--light);
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  margin-bottom: 1.5rem;
+}
+.modal-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+.modal-btn {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+.modal-btn-primary {
+  background: var(--amber);
+  color: white;
+  border: none;
+}
+.modal-btn-primary:hover { background: var(--amber2); }
+.modal-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--light);
+  color: var(--ink);
+}
+.modal-btn-secondary:hover { background: var(--paper); }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">Dad<span>script</span></div>
-  <button class="nav-btn" onclick="pay('annual')">Start — $25/mo</button>
+  <button class="nav-btn" onclick="showEmailModal('annual', 270, 'Annual Plan')">Start — $25/mo</button>
 </nav>
 
 <section class="hero">
@@ -174,7 +239,7 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
   <h1>The father you want to be deserves more than <em>good intentions.</em></h1>
   <p class="hero-sub">Every week, a personal letter written for your specific kids, your specific season, your specific story. Not generic parenting advice. A private companion for the long journey of fatherhood.</p>
   <div class="hero-btns">
-    <button class="btn-dark" onclick="pay('annual')">Start my Dadscript →</button>
+    <button class="btn-dark" onclick="showEmailModal('annual', 270, 'Annual Plan')">Start my Dadscript →</button>
     <span class="hero-note">$25/mo · First letter in 24 hours</span>
   </div>
 </section>
@@ -259,9 +324,8 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
           <li>Personalised per child</li>
           <li>Monthly private prompt</li>
           <li>Time capsule archive</li>
-          <li>+$5/mo per extra child</li>
         </ul>
-        <button class="btn-pay-outline" onclick="pay('monthly')">Start monthly</button>
+        <button class="btn-pay-outline" onclick="showEmailModal('monthly', 25, 'Monthly Plan')">Start monthly</button>
         <p class="plan-note">Cancel anytime.</p>
       </div>
       <div class="plan best reveal">
@@ -275,9 +339,8 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
           <li>One simple payment</li>
           <li>Year-end time capsule</li>
           <li>Priority onboarding</li>
-          <li>+$54/yr per extra child</li>
         </ul>
-        <button class="btn-pay" onclick="pay('annual')">Start annual</button>
+        <button class="btn-pay" onclick="showEmailModal('annual', 270, 'Annual Plan')">Start annual</button>
         <p class="plan-note">Most dads choose this.</p>
       </div>
     </div>
@@ -303,7 +366,7 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
       </div>
       <div class="faq reveal">
         <button class="faq-q">Can I give this as a gift?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>Yes — one of the best gifts for a dad who's hard to buy for. Email hello@dadscript.co after subscribing and we'll set up a gift subscription.</p></div>
+        <div class="faq-a"><p>Yes — one of the best gifts for a dad who's hard to buy for. Email hello@dadscript.com after subscribing and we'll set up a gift subscription.</p></div>
       </div>
     </div>
   </div>
@@ -313,56 +376,115 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
   <div class="inner">
     <h2 class="reveal">The years go fast. The <em>regret</em> goes slow.</h2>
     <p class="reveal">Start your Dadscript today. First letter within 24 hours.</p>
-    <button class="btn-dark reveal" onclick="pay('annual')">Start for $25/month →</button>
+    <button class="btn-dark reveal" onclick="showEmailModal('annual', 270, 'Annual Plan')">Start for $25/month →</button>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Dadscript · <a href="mailto:hello@dadscript.co">hello@dadscript.co</a> · <a href="#">Privacy</a></p>
+  <p>© 2026 Dadscript · <a href="/cdn-cgi/l/email-protection#8ce4e9e0e0e3cce8ede8ffeffee5fcf8a2efe3"><span class="__cf_email__" data-cfemail="ddb5b8b1b1b29db9bcb9aebeadb6afa3f1bcb0">[email&#160;protected]</span></a> · <a href="#">Privacy</a></p>
 </footer>
 
+<!-- Email Modal -->
+<div id="emailModal" class="modal">
+  <div class="modal-content">
+    <h3>Almost there</h3>
+    <p>Please enter your email to continue with payment.</p>
+    <input type="email" id="customerEmail" placeholder="you@example.com" class="modal-input">
+    <div class="modal-buttons">
+      <button id="confirmPaymentBtn" class="modal-btn modal-btn-primary">Proceed to Pay</button>
+      <button onclick="closeEmailModal()" class="modal-btn modal-btn-secondary">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
-  const PUBLIC_KEY = 'pub-667455f822256615b2b3fb21b6c6c0028db3c1793afccf7d';
-  const FORM_URL   = 'https://forms.gle/K9WbNYZtPTRMXWJC6';
+  const LENCO_PUBLIC_KEY = 'pub-667455f822256615b2b3fb21b6c6c0028db3c1793afccf7d';
+  const FORM_URL = 'https://forms.gle/K9WbNYZtPTRMXWJC6';
+  let pendingPayment = { planId: null, amount: null, planName: null };
 
-  const PLANS = {
-    monthly: { amount: 2500,  currency: 'USD', description: 'Dadscript Monthly — $25/mo' },
-    annual:  { amount: 27000, currency: 'USD', description: 'Dadscript Annual — $270/yr'  }
-  };
+  // Show email modal and store selected plan details
+  function showEmailModal(planId, amount, planName) {
+    pendingPayment = { planId, amount, planName };
+    const modal = document.getElementById('emailModal');
+    modal.style.display = 'flex';
+    document.getElementById('customerEmail').value = '';
+    document.getElementById('customerEmail').focus();
+  }
 
-  function pay(plan) {
-    const p = PLANS[plan];
-    LencoCheckout.setup({
-      key: PUBLIC_KEY,
-      amount: p.amount,
-      currency: p.currency,
-      description: p.description,
-      reference: 'DS-' + plan + '-' + Date.now(),
+  function closeEmailModal() {
+    document.getElementById('emailModal').style.display = 'none';
+    pendingPayment = { planId: null, amount: null, planName: null };
+  }
+
+  // Proceed to payment with collected email
+  function proceedToPayment() {
+    const email = document.getElementById('customerEmail').value.trim();
+    if (!email) {
+      alert('Please enter your email address.');
+      return;
+    }
+    if (!pendingPayment.planId) {
+      closeEmailModal();
+      return;
+    }
+
+    const { planId, amount, planName } = pendingPayment;
+    closeEmailModal();
+
+    if (typeof LencoPay === 'undefined') {
+      alert('Payment system not ready. Please refresh the page and try again.');
+      return;
+    }
+
+    const reference = `DS-${planId}-${Date.now()}`;
+
+    LencoPay.getPaid({
+      key: LENCO_PUBLIC_KEY,
+      reference: reference,
+      email: email,
+      amount: amount,
+      currency: 'USD',
+      description: `Dadscript ${planName} — $${amount}`,
+      channels: ['card', 'mobile-money'],
+      customer: {
+        firstName: '',
+        lastName: '',
+        phone: ''
+      },
       onSuccess: function(response) {
+        // Redirect to Google Form after successful payment
         window.location.href = FORM_URL;
       },
-      onClose: function() {},
-      onError: function(err) {
-        alert('Payment could not be completed. Please try again.');
+      onClose: function() {
+        alert('Payment cancelled. You can try again anytime.');
+      },
+      onConfirmationPending: function() {
+        alert('Payment is being processed. Check your email for confirmation.');
       }
-    }).open();
+    });
   }
+
+  // Attach event listener after DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const confirmBtn = document.getElementById('confirmPaymentBtn');
+    if (confirmBtn) confirmBtn.addEventListener('click', proceedToPayment);
+
+    // FAQ accordion functionality
+    const faqButtons = document.querySelectorAll('.faq-q');
+    faqButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const faq = btn.closest('.faq');
+        faq.classList.toggle('open');
+      });
+    });
+  });
 
   // Scroll reveal
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // FAQ
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq');
-      const open = item.classList.contains('open');
-      document.querySelectorAll('.faq').forEach(f => f.classList.remove('open'));
-      if (!open) item.classList.add('open');
-    });
-  });
 </script>
 </body>
 </html>
