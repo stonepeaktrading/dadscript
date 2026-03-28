@@ -4,63 +4,56 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dadscript — A Weekly Letter for Fathers</title>
+<script src="https://pay.lenco.co/js/v1/inline.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 :root {
-  --ink:     #191410;
-  --amber:   #C4782A;
-  --amber2:  #E09A50;
-  --cream:   #FAF6EE;
-  --paper:   #F0E8D8;
-  --muted:   #9B7E6A;
-  --light:   #D4BCA8;
+  --ink:    #191410;
+  --amber:  #C4782A;
+  --amber2: #E09A50;
+  --cream:  #FAF6EE;
+  --paper:  #F0E8D8;
+  --muted:  #9B7E6A;
+  --light:  #D4BCA8;
 }
 
-body {
-  font-family: 'Jost', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  overflow-x: hidden;
-}
+body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.1rem 1.5rem;
-  background: rgba(250,246,238,0.92);
+  background: rgba(250,246,238,0.93);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(196,120,42,0.12);
 }
-.logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; letter-spacing: -0.01em; }
+.logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; }
 .logo span { color: var(--amber); }
 .nav-btn {
-  background: var(--ink); color: var(--cream);
-  border: none; border-radius: 50px; padding: .55rem 1.25rem;
+  background: var(--ink); color: var(--cream); border: none;
+  border-radius: 50px; padding: .55rem 1.25rem;
   font-family: 'Jost', sans-serif; font-size: .85rem; font-weight: 500;
   cursor: pointer; transition: background .2s;
 }
 .nav-btn:hover { background: var(--amber); }
 
 .hero {
-  min-height: 100svh;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 7rem 1.5rem 4rem;
+  min-height: 100svh; display: flex; flex-direction: column;
+  justify-content: center; padding: 7rem 1.5rem 4rem;
   position: relative; overflow: hidden;
 }
 .hero::after {
-  content: '';
-  position: absolute; top: 10%; right: -15%;
-  width: min(500px, 80vw); height: min(500px, 80vw);
+  content: ''; position: absolute; top: 10%; right: -15%;
+  width: min(500px,80vw); height: min(500px,80vw);
   background: radial-gradient(circle, rgba(196,120,42,.13) 0%, transparent 68%);
   pointer-events: none;
 }
 .eyebrow {
   font-size: .72rem; font-weight: 500; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--amber);
-  margin-bottom: 1.2rem;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem;
   animation: up .7s .1s both;
 }
 h1 {
@@ -72,33 +65,24 @@ h1 {
 }
 h1 em { font-style: italic; color: var(--amber); }
 .hero-sub {
-  font-size: clamp(.95rem, 2.5vw, 1.15rem);
-  color: var(--muted); line-height: 1.75; max-width: 500px;
-  font-weight: 300; margin-bottom: 2.5rem;
-  animation: up .7s .35s both;
+  font-size: clamp(.95rem,2.5vw,1.15rem); color: var(--muted);
+  line-height: 1.75; max-width: 500px; font-weight: 300;
+  margin-bottom: 2.5rem; animation: up .7s .35s both;
 }
 .hero-btns { display: flex; flex-wrap: wrap; gap: .75rem; animation: up .7s .5s both; }
 .btn-dark {
-  background: var(--ink); color: var(--cream);
-  border: none; border-radius: 50px; padding: .9rem 2rem;
+  background: var(--ink); color: var(--cream); border: none;
+  border-radius: 50px; padding: .9rem 2rem;
   font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 500;
-  cursor: pointer; transition: all .25s; text-decoration: none; display: inline-block;
+  cursor: pointer; transition: all .25s;
 }
 .btn-dark:hover { background: var(--amber); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(196,120,42,.3); }
 .hero-note { font-size: .82rem; color: var(--light); align-self: center; font-weight: 300; }
 
 section { padding: 5rem 1.5rem; }
 .inner { max-width: 680px; margin: 0 auto; }
-.tag {
-  display: inline-block; font-size: .68rem; font-weight: 500;
-  letter-spacing: .15em; text-transform: uppercase; color: var(--amber);
-  margin-bottom: .9rem;
-}
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
-  line-height: 1.25; letter-spacing: -.02em; margin-bottom: 1.5rem;
-}
+.tag { display: inline-block; font-size: .68rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--amber); margin-bottom: .9rem; }
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,4vw,2.6rem); line-height: 1.25; letter-spacing: -.02em; margin-bottom: 1.5rem; }
 h2 em { font-style: italic; color: var(--amber); }
 
 .dark { background: var(--ink); color: var(--cream); }
@@ -113,7 +97,7 @@ h2 em { font-style: italic; color: var(--amber); }
   border-top: 3px solid var(--amber);
 }
 .letter-meta { font-size: .78rem; color: var(--light); margin-bottom: 1.5rem; }
-.letter-body { font-family: 'Playfair Display', serif; font-size: .98rem; line-height: 1.9; color: var(--ink); }
+.letter-body { font-family: 'Playfair Display', serif; font-size: .98rem; line-height: 1.9; }
 .letter-body p { margin-bottom: 1.1rem; }
 .letter-sig { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--paper); font-family: 'Playfair Display', serif; font-style: italic; color: var(--muted); font-size: .9rem; }
 
@@ -121,12 +105,7 @@ h2 em { font-style: italic; color: var(--amber); }
 .step { display: flex; gap: 1.25rem; padding-bottom: 2rem; }
 .step:last-child { padding-bottom: 0; }
 .step-l { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
-.step-n {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: var(--amber); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .85rem; font-weight: 500;
-}
+.step-n { width: 38px; height: 38px; border-radius: 50%; background: var(--amber); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .85rem; font-weight: 500; }
 .step-line { width: 1px; flex: 1; min-height: 32px; margin-top: 6px; background: linear-gradient(var(--amber), var(--paper)); }
 .step:last-child .step-line { display: none; }
 .step-r { padding-top: .5rem; }
@@ -178,25 +157,6 @@ h2 em { font-style: italic; color: var(--amber); }
 footer { background: var(--ink); border-top: 1px solid rgba(250,246,238,.06); padding: 1.5rem; text-align: center; font-size: .78rem; color: rgba(250,246,238,.25); }
 footer a { color: rgba(250,246,238,.35); text-decoration: none; }
 
-.modal-bg { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(25,20,16,.75); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1rem; }
-.modal-bg.open { display: flex; }
-.modal { background: var(--cream); border-radius: 18px; width: 100%; max-width: 420px; overflow: hidden; box-shadow: 0 20px 60px rgba(25,20,16,.35); }
-.modal-head { background: var(--ink); padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-.modal-head-title { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 1rem; }
-.modal-head-price { font-size: .78rem; color: rgba(250,246,238,.45); margin-top: .15rem; }
-.modal-close { background: none; border: none; color: rgba(250,246,238,.4); font-size: 1.6rem; cursor: pointer; line-height: 1; padding: 0; }
-.modal-body { padding: 1.5rem; }
-.field { margin-bottom: .9rem; }
-.field label { display: block; font-size: .7rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
-.field input { width: 100%; padding: .7rem .9rem; border: 1.5px solid #E0D8CC; border-radius: 8px; font-size: .95rem; font-family: 'Jost', sans-serif; background: #fff; outline: none; transition: border .2s; }
-.field input:focus { border-color: var(--amber); }
-.field-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .6rem; }
-.error-msg { display: none; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: .65rem .9rem; font-size: .82rem; color: #991b1b; margin-bottom: .9rem; }
-.submit-btn { width: 100%; background: var(--amber); color: #fff; border: none; border-radius: 50px; padding: .9rem; font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all .2s; margin-top: .25rem; }
-.submit-btn:hover:not(:disabled) { background: var(--amber2); }
-.submit-btn:disabled { opacity: .65; cursor: not-allowed; }
-.secure-note { font-size: .7rem; color: var(--light); text-align: center; margin-top: .75rem; }
-
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }
 @keyframes up { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
@@ -206,7 +166,7 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
 
 <nav>
   <div class="logo">Dad<span>script</span></div>
-  <button class="nav-btn" onclick="openModal('annual')">Start — $25/mo</button>
+  <button class="nav-btn" onclick="pay('annual')">Start — $25/mo</button>
 </nav>
 
 <section class="hero">
@@ -214,7 +174,7 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
   <h1>The father you want to be deserves more than <em>good intentions.</em></h1>
   <p class="hero-sub">Every week, a personal letter written for your specific kids, your specific season, your specific story. Not generic parenting advice. A private companion for the long journey of fatherhood.</p>
   <div class="hero-btns">
-    <button class="btn-dark" onclick="openModal('annual')">Start my Dadscript →</button>
+    <button class="btn-dark" onclick="pay('annual')">Start my Dadscript →</button>
     <span class="hero-note">$25/mo · First letter in 24 hours</span>
   </div>
 </section>
@@ -301,7 +261,7 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
           <li>Time capsule archive</li>
           <li>+$5/mo per extra child</li>
         </ul>
-        <button class="btn-pay-outline" onclick="openModal('monthly')">Start monthly</button>
+        <button class="btn-pay-outline" onclick="pay('monthly')">Start monthly</button>
         <p class="plan-note">Cancel anytime.</p>
       </div>
       <div class="plan best reveal">
@@ -317,7 +277,7 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
           <li>Priority onboarding</li>
           <li>+$54/yr per extra child</li>
         </ul>
-        <button class="btn-pay" onclick="openModal('annual')">Start annual</button>
+        <button class="btn-pay" onclick="pay('annual')">Start annual</button>
         <p class="plan-note">Most dads choose this.</p>
       </div>
     </div>
@@ -335,7 +295,7 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
       </div>
       <div class="faq reveal">
         <button class="faq-q">What if my situation is complicated?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>Fatherhood is complicated. Dadscript works for co-parenting, blended families, and dads who don't see their kids as much as they want. The onboarding asks about your actual situation.</p></div>
+        <div class="faq-a"><p>Fatherhood is complicated. Dadscript works for co-parenting, blended families, and dads who don't see their kids as much as they want.</p></div>
       </div>
       <div class="faq reveal">
         <button class="faq-q">How much time does it take?<span class="faq-icon">+</span></button>
@@ -353,7 +313,7 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
   <div class="inner">
     <h2 class="reveal">The years go fast. The <em>regret</em> goes slow.</h2>
     <p class="reveal">Start your Dadscript today. First letter within 24 hours.</p>
-    <button class="btn-dark reveal" onclick="openModal('annual')">Start for $25/month →</button>
+    <button class="btn-dark reveal" onclick="pay('annual')">Start for $25/month →</button>
   </div>
 </section>
 
@@ -361,97 +321,40 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
   <p>© 2026 Dadscript · <a href="mailto:hello@dadscript.co">hello@dadscript.co</a> · <a href="#">Privacy</a></p>
 </footer>
 
-<div class="modal-bg" id="modal" onclick="bgClick(event)">
-  <div class="modal">
-    <div class="modal-head">
-      <div>
-        <div class="modal-head-title" id="modal-title">Dadscript</div>
-        <div class="modal-head-price" id="modal-price"></div>
-      </div>
-      <button class="modal-close" onclick="closeModal()">&#215;</button>
-    </div>
-    <div class="modal-body">
-      <div class="error-msg" id="err"></div>
-      <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="your@email.com"></div>
-      <div class="field"><label>Name on card</label><input type="text" id="f-name" placeholder="Full name"></div>
-      <div class="field"><label>Card number</label><input type="text" id="f-num" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"></div>
-      <div class="field">
-        <div class="field-row">
-          <div><label>Month</label><input type="text" id="f-mm" placeholder="MM" maxlength="2" style="text-align:center"></div>
-          <div><label>Year</label><input type="text" id="f-yy" placeholder="YY" maxlength="2" style="text-align:center"></div>
-          <div><label>CVV</label><input type="password" id="f-cvv" placeholder="•••" maxlength="4" style="text-align:center"></div>
-        </div>
-      </div>
-      <button class="submit-btn" id="pay-btn" onclick="pay()">Pay now</button>
-      <p class="secure-note">🔒 Secured by Lenco. Card details are encrypted.</p>
-    </div>
-  </div>
-</div>
-
 <script>
-  const FORM_URL = 'https://forms.gle/K9WbNYZtPTRMXWJC6';
-  let plan = 'monthly';
+  const PUBLIC_KEY = 'pub-667455f822256615b2b3fb21b6c6c0028db3c1793afccf7d';
+  const FORM_URL   = 'https://forms.gle/K9WbNYZtPTRMXWJC6';
+
   const PLANS = {
-    monthly: { title: 'Dadscript Monthly', price: '$25 / month', btn: 'Pay $25' },
-    annual:  { title: 'Dadscript Annual',  price: '$270 / year', btn: 'Pay $270' }
+    monthly: { amount: 2500,  currency: 'USD', description: 'Dadscript Monthly — $25/mo' },
+    annual:  { amount: 27000, currency: 'USD', description: 'Dadscript Annual — $270/yr'  }
   };
-  function openModal(p) {
-    plan = p;
-    document.getElementById('modal-title').textContent = PLANS[p].title;
-    document.getElementById('modal-price').textContent = PLANS[p].price;
-    document.getElementById('pay-btn').textContent = PLANS[p].btn;
-    document.getElementById('err').style.display = 'none';
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+
+  function pay(plan) {
+    const p = PLANS[plan];
+    LencoCheckout.setup({
+      key: PUBLIC_KEY,
+      amount: p.amount,
+      currency: p.currency,
+      description: p.description,
+      reference: 'DS-' + plan + '-' + Date.now(),
+      onSuccess: function(response) {
+        window.location.href = FORM_URL;
+      },
+      onClose: function() {},
+      onError: function(err) {
+        alert('Payment could not be completed. Please try again.');
+      }
+    }).open();
   }
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function bgClick(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-  function fmtCard(el) {
-    let v = el.value.replace(/\D/g,'').slice(0,16);
-    el.value = v.replace(/(.{4})/g,'$1 ').trim();
-  }
-  function showErr(msg) {
-    const el = document.getElementById('err');
-    el.textContent = msg; el.style.display = 'block';
-  }
-  async function pay() {
-    const btn  = document.getElementById('pay-btn');
-    const email = document.getElementById('f-email').value.trim();
-    const name  = document.getElementById('f-name').value.trim();
-    const num   = document.getElementById('f-num').value.replace(/\s/g,'');
-    const mm    = document.getElementById('f-mm').value.trim();
-    const yy    = document.getElementById('f-yy').value.trim();
-    const cvv   = document.getElementById('f-cvv').value.trim();
-    document.getElementById('err').style.display = 'none';
-    if (!email || !name || !num || !mm || !yy || !cvv) return showErr('Please fill in all fields.');
-    if (!/\S+@\S+\.\S+/.test(email)) return showErr('Please enter a valid email.');
-    if (num.length < 15) return showErr('Please enter a valid card number.');
-    btn.disabled = true;
-    btn.textContent = 'Processing…';
-    const reset = () => { btn.disabled = false; btn.textContent = PLANS[plan].btn; };
-    try {
-      const res  = await fetch('/api/pay', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan, email, cardHolderName: name, cardNumber: num, expiryMonth: mm, expiryYear: yy, cvv })
-      });
-      const data = await res.json();
-      if (!res.ok || data.error) { showErr(data.error || 'Payment failed. Please try again.'); reset(); return; }
-      if (data.status === 'successful') { window.location.href = FORM_URL; }
-      else if (data.redirectUrl) { window.location.href = data.redirectUrl; }
-      else { showErr('Payment pending — check your email for confirmation.'); reset(); }
-    } catch(e) {
-      showErr('Network error. Check your connection and try again.');
-      reset();
-    }
-  }
+
+  // Scroll reveal
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // FAQ
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq');
@@ -460,9 +363,6 @@ footer a { color: rgba(250,246,238,.35); text-decoration: none; }
       if (!open) item.classList.add('open');
     });
   });
-  if (new URLSearchParams(location.search).get('payment_success') === 'true') {
-    window.location.href = FORM_URL;
-  }
 </script>
 </body>
 </html>
